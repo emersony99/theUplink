@@ -123,11 +123,16 @@ const TheUplink2026 = () => {
       return;
     }
 
+    const apiUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? "http://localhost:5050/api" : "");
+    if (!apiUrl) {
+      setMessage({ type: "error", text: "Invites are not configured yet. Please check back soon." });
+      return;
+    }
+
     setIsLoading(true);
     setMessage(null);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5050";
       const response = await fetch(`${apiUrl}/uplink/invite`, {
         method: "POST",
         headers: {
