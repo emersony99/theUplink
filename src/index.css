@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    margin: 0;
+    background: #050507;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  }
+}
+
+/* The Uplink landing visuals */
+.uplink-nebula {
+  background: radial-gradient(120% 120% at 20% 20%, rgba(80, 120, 255, 0.14), transparent 45%),
+              radial-gradient(110% 110% at 80% 40%, rgba(255, 120, 200, 0.10), transparent 40%),
+              radial-gradient(100% 100% at 50% 80%, rgba(120, 255, 210, 0.10), transparent 38%),
+              #050507;
+  animation: uplink-drift 28s ease-in-out infinite alternate;
+}
+
+@keyframes uplink-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(-2%, 2%, 0) scale(1.02);
+  }
+}
+
+.uplink-stars::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,0.25), transparent),
+    radial-gradient(1px 1px at 55% 55%, rgba(255,255,255,0.28), transparent);
+  opacity: 0.35;
+  animation: uplink-twinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes uplink-twinkle {
+  0% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0.45;
+  }
+}
+
+.uplink-input-shell {
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+}
+
+.uplink-input-shell:focus-within {
+  box-shadow: 0 10px 45px rgba(255, 255, 255, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Subtle neural network lines for The Uplink page */
+.uplink-network {
+  opacity: 0.45;
+  mix-blend-mode: screen;
+}
+
+.uplink-network line {
+  stroke: rgba(120, 200, 255, 0.25);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 6px rgba(120, 200, 255, 0.35));
+  animation: uplink-network-pulse 6s ease-in-out infinite alternate;
+}
+
+.uplink-network circle {
+  fill: rgba(255, 255, 255, 0.35);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.35));
+  animation: uplink-node-pulse 5s ease-in-out infinite alternate;
+}
+
+@keyframes uplink-network-pulse {
+  0% {
+    stroke: rgba(120, 200, 255, 0.16);
+  }
+  100% {
+    stroke: rgba(120, 200, 255, 0.32);
+  }
+}
+
+@keyframes uplink-node-pulse {
+  0% {
+    r: 2;
+    opacity: 0.6;
+  }
+  100% {
+    r: 3.6;
+    opacity: 1;
+  }
+}
+
+/* Hide scrollbars while keeping scroll functionality */
+div::-webkit-scrollbar {
+  display: none;
+}
